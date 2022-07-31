@@ -4,11 +4,11 @@ on:
   push:
     branches:
     - sn32_master
-    - didstopia/keychron_k8
+    # - didstopia/keychron_k8
   pull_request:
     branches:
     - sn32_master
-    - didstopia/keychron_k8
+    # - didstopia/keychron_k8
   workflow_dispatch:
 
 jobs:
