@@ -24,8 +24,10 @@ jobs:
     # - name: Install dependencies
     #   run: pip3 install -r requirements.txt
     - name: Build Keychron K8 ISO
+      shell: 'script -q -e -c "bash {0}"'
       run: ./util/docker_build.sh keychron/k8/rgb/iso:iso
     - name: Build Keychron K8 ISO (VIA)
+      shell: 'script -q -e -c "bash {0}"'
       run: ./util/docker_build.sh keychron/k8/rgb/iso:via_iso
     - name: Declare some variables
       id: vars
