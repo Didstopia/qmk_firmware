@@ -1,45 +1,45 @@
-name: Compile Firmware (quick)
+name: Compile Firmware (Keychron K8)
 
 on:
   push:
     branches:
     - sn32_master
-    # - didstopia/keychron_k8
+    - didstopia/keychron_k8
   pull_request:
     branches:
     - sn32_master
-    # - didstopia/keychron_k8
+    - didstopia/keychron_k8
   workflow_dispatch:
 
 jobs:
   Build:
     runs-on: ubuntu-latest
 
-    container: d3xter93/sonix_base_container
+    # container: d3xter93/sonix_base_container
 
     steps:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-    - name: Install dependencies
-      run: pip3 install -r requirements.txt
-    - name: Build Sonix keyboards on quickbuild list
-      run:  python3 lib/python/build_all.py --whitelist quickbuild_whitelist
+    # - name: Install dependencies
+    #   run: pip3 install -r requirements.txt
+    - name: Build Keychron K8 ISO
+      run: ./util/docker_build.sh keychron/k8/rgb/iso:iso
+    - name: Build Keychron K8 ISO (VIA)
+      run: ./util/docker_build.sh keychron/k8/rgb/iso:via_iso
     - name: Declare some variables
       id: vars
       shell: bash
       run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF_NAME//\//-})"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
     - uses: actions/upload-artifact@v3
       if: ${{ always() }}
       with:
         name: Pre-Compiled Firmware (${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }})
-        path: '*.bin'
-
-    - uses: actions/upload-artifact@v3
-      if: ${{ always() }}
-      with:
-        name: Pre-Compiled Firmware
-        path: '*.bin'
+        path: '.build/*.bin'
+    # - uses: actions/upload-artifact@v3
+    #   if: ${{ always() }}
+    #   with:
+    #     name: Pre-Compiled Firmware
+    #     path: 'build/*.bin'
