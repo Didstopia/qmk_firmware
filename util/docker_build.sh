@@ -36,7 +36,7 @@ if [ -z "$RUNTIME" ]; then
 		exit 2
 	fi
 fi
-	
+
 
 # Determine arguments
 if [ $# -eq 0 ]; then
@@ -64,7 +64,7 @@ if [ -n "$target" ]; then
 		errcho "Consider flashing with QMK Toolbox (https://github.com/qmk/qmk_toolbox) instead"
 		exit 3
 	else
-		usb_args="--privileged -v /dev:/dev"
+		usb_args="-t --privileged -v /dev:/dev"
 	fi
 fi
 dir=$(pwd -W 2>/dev/null) || dir=$PWD  # Use Windows path if on Windows
