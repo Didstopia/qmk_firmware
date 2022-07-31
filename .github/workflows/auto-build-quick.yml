@@ -9,6 +9,7 @@ on:
     branches:
     - sn32_master
     - didstopia/keychron_k8
+  workflow_dispatch:
 
 jobs:
   Build:

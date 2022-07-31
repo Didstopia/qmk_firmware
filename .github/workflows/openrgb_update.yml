@@ -5,7 +5,8 @@ on:
   push:
     branches:
     - sn32_master
-
+    - didstopia/keychron_k8_openrgb
+  workflow_dispatch:
 
 jobs:
   develop_update:
