@@ -1,3 +1,6 @@
+# Intermediate build files?
+*.d
+
 # Junk files
 *.bak
 *.swp
