@@ -23,7 +23,7 @@ jobs:
       run: |
         apt-get update && apt-get install -y dos2unix
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 

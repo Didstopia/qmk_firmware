@@ -1,0 +1,37 @@
+name: Compile Firmware (Keychron K8)
+
+on:
+  push:
+    branches:
+      - didstopia/keychron_k8
+      - didstopia/keychron_k8_openrgb
+  pull_request:
+    branches:
+      - didstopia/keychron_k8
+      - didstopia/keychron_k8_openrgb
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build Keychron K8 ISO
+        shell: 'script -q -e -c "bash {0}"'
+        run: ./util/docker_build.sh keychron/k8/rgb/iso:iso
+      - name: Build Keychron K8 ISO (VIA)
+        shell: 'script -q -e -c "bash {0}"'
+        run: ./util/docker_build.sh keychron/k8/rgb/iso:via_iso
+      - name: Declare some variables
+        id: vars
+        shell: bash
+        run: |-
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF_NAME//\//-})"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: qmk_firmware_(${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }})
+          path: '.build/*.bin'
