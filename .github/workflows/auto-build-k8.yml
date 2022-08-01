@@ -34,4 +34,6 @@ jobs:
         if: ${{ always() }}
         with:
           name: qmk_firmware_(${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }})
-          path: '.build/*.bin'
+          path: |
+            .build/*.bin
+            .build/*.hex

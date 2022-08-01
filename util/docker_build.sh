@@ -73,6 +73,9 @@ if [ "$RUNTIME" = "docker" ]; then
 	uid_arg="--user $(id -u):$(id -g)"
 fi
 
+# Build the container
+"$RUNTIME" build -t qmkfm/qmk_cli:local "$dir"
+
 # Run container and build firmware
 "$RUNTIME" run --rm -it $usb_args \
 	$uid_arg \
@@ -81,5 +84,5 @@ fi
 	-e ALT_GET_KEYBOARDS=true \
 	-e SKIP_GIT="$SKIP_GIT" \
 	-e MAKEFLAGS="$MAKEFLAGS" \
-	qmkfm/qmk_cli \
+	qmkfm/qmk_cli:local \
 	make "$keyboard${keymap:+:$keymap}${target:+:$target}"

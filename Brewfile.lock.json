@@ -1,0 +1,48 @@
+{
+  "entries": {
+    "tap": {
+      "qmk/qmk": {
+        "revision": "2554565eef47904311cb26179a5951b90cb91171"
+      },
+      "homebrew/cask-drivers": {
+        "revision": "da3f807a59707dcf8cd80f29ba4c0ecc5c16303c"
+      }
+    },
+    "brew": {
+      "qmk": {
+        "version": "1.1.0",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://github.com/qmk/homebrew-qmk/releases/download/qmk-1.1.0",
+          "files": {
+            "catalina": {
+              "cellar": ":any",
+              "url": "https://github.com/qmk/homebrew-qmk/releases/download/qmk-1.1.0/qmk-1.1.0.catalina.bottle.tar.gz",
+              "sha256": "90f10c34907159f92ffc188b389835609a8a8f1c5f78bb9ecd56de08b6073455"
+            }
+          }
+        }
+      }
+    },
+    "cask": {
+      "qmk-toolbox": {
+        "version": "0.2.2",
+        "options": {
+          "full_name": "qmk-toolbox"
+        }
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "ventura": {
+        "HOMEBREW_VERSION": "3.5.6-73-ge217fd3",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "847930e5a501c909bbca047fafb096d0981ab79e",
+        "CLT": "14.0.0.0.1.1658620134",
+        "Xcode": "14.0",
+        "macOS": "13.0"
+      }
+    }
+  }
+}
