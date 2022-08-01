@@ -24,6 +24,9 @@ jobs:
       - name: Build Keychron K8 ISO (VIA)
         shell: 'script -q -e -c "bash {0}"'
         run: ./util/docker_build.sh keychron/k8/rgb/iso:via_iso
+      - name: Build Keychron K8 ISO (VIA MAC FI)
+        shell: 'script -q -e -c "bash {0}"'
+        run: ./util/docker_build.sh keychron/k8/rgb/iso:via_iso_mac_fi
       - name: Declare some variables
         id: vars
         shell: bash
@@ -33,7 +36,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
-          name: qmk_firmware_(${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }})
+          name: qmk_firmware_${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
           path: |
             .build/*.bin
             .build/*.hex
