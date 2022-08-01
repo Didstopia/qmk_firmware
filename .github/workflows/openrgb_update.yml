@@ -42,6 +42,8 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # FIXME: This is still all kinds of broken..
+        git fetch --prune
+        git branch --all
         git checkout didstopia/keychron_k8_openrgb
         git merge didstopia/keychron_k8
         git push
