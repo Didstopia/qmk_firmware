@@ -36,18 +36,25 @@ jobs:
         files: ".locked"
 
     - name: Update openrgb from master
-      if: steps.check_locked.outputs.files_exists == 'false'
-      run: |-
-        set -x
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        # FIXME: This is still all kinds of broken..
-        git fetch --prune
-        git branch --all
-        git checkout didstopia/keychron_k8_openrgb
-        git merge didstopia/keychron_k8
-        git push
-        # # git merge origin/sn32_master
-        # git merge origin/didstopia/keychron_k8
-        # # git push origin sn32_master_openrgb
-        # git push origin didstopia/keychron_k8_openrgb
+      uses: tretuna/sync-branches@1.4.0
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        FROM_BRANCH: "didstopia/keychron_k8"
+        TO_BRANCH: "didstopia/keychron_k8_openrgb"
+
+    # - name: Update openrgb from master
+    #   if: steps.check_locked.outputs.files_exists == 'false'
+    #   run: |-
+    #     set -x
+    #     git config --global user.name "github-actions[bot]"
+    #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    #     # FIXME: This is still all kinds of broken..
+    #     git fetch --prune
+    #     git branch --all
+    #     git checkout didstopia/keychron_k8_openrgb
+    #     git merge didstopia/keychron_k8
+    #     git push
+    #     # # git merge origin/sn32_master
+    #     # git merge origin/didstopia/keychron_k8
+    #     # # git push origin sn32_master_openrgb
+    #     # git push origin didstopia/keychron_k8_openrgb
