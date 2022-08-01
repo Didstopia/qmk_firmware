@@ -22,7 +22,8 @@ jobs:
         fetch-depth: 0
 
     - name: Checkout develop
-      run: |
+      run: |-
+        set -x
         # git fetch origin sn32_master sn32_master_openrgb
         git fetch origin didstopia/keychron_k8 didstopia/keychron_k8_openrgb
         # git checkout sn32_master_openrgb
@@ -36,10 +37,11 @@ jobs:
 
     - name: Update openrgb from master
       if: steps.check_locked.outputs.files_exists == 'false'
-      run: |
+      run: |-
+        set -x
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # git merge origin/sn32_master
         git merge origin/didstopia/keychron_k8
         # git push origin sn32_master_openrgb
-        git push origin didstopia/keychron_k8_openrgb
+        git push origin didstopia/keychron_k8_openrgb --force
